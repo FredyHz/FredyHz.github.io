@@ -1,0 +1,383 @@
+/* ═══════════════════════════════════════════════════════════════
+   SISTEMA DE REGISTRO PREMIUM — premium.css
+   Agregar en <head>: <link rel="stylesheet" href="premium.css">
+═══════════════════════════════════════════════════════════════ */
+
+/* ── OVERLAY FONDO ── */
+#premium-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 7, 12, 0.88);
+    z-index: 20000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    backdrop-filter: blur(8px);
+    padding: 16px;
+}
+#premium-overlay.activo {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ── MODAL BOX ── */
+.premium-box {
+    background: linear-gradient(160deg, #13151e, #1a1d28);
+    border: 1px solid rgba(108, 140, 255, 0.2);
+    border-radius: 24px;
+    width: min(480px, 100%);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04) inset;
+    overflow: hidden;
+    animation: premium-entra 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes premium-entra {
+    from { transform: translateY(30px) scale(0.95); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ── CABECERA CON GRADIENTE ── */
+.premium-header {
+    background: linear-gradient(135deg, #1e2235, #252a3d);
+    padding: 28px 32px 24px;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid rgba(108,140,255,0.12);
+}
+.premium-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(108,140,255,0.15);
+    border: 1px solid rgba(108,140,255,0.3);
+    color: #6c8cff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+}
+.premium-titulo {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+}
+.premium-subtitulo {
+    font-size: 14px;
+    color: #8a8fa8;
+    line-height: 1.5;
+}
+
+/* ── BENEFICIOS ── */
+.premium-beneficios {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 32px 0;
+}
+.beneficio-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    color: #c8cce0;
+}
+.beneficio-item i {
+    color: #6c8cff;
+    font-size: 17px;
+    flex-shrink: 0;
+}
+
+/* ── FORMULARIO ── */
+.premium-form {
+    padding: 20px 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.premium-input-wrap {
+    position: relative;
+}
+.premium-input-wrap i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5a5f78;
+    font-size: 17px;
+    pointer-events: none;
+}
+.premium-input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px 14px 12px 42px;
+    font-size: 14px;
+    color: #fff;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+.premium-input:focus {
+    border-color: rgba(108,140,255,0.5);
+    background: rgba(108,140,255,0.06);
+}
+.premium-input::placeholder { color: #5a5f78; }
+
+/* Mensaje de error */
+.premium-error {
+    font-size: 12px;
+    color: #e06c6c;
+    padding: 0 4px;
+    display: none;
+}
+.premium-error.visible { display: block; }
+
+/* Botón principal */
+.btn-premium {
+    width: 100%;
+    background: linear-gradient(135deg, #6c8cff, #534AB7);
+    border: none;
+    border-radius: 12px;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.btn-premium:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-premium:active { transform: translateY(0); }
+
+/* Separador */
+.premium-sep {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: #4a4f65;
+}
+.premium-sep::before,
+.premium-sep::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+}
+
+/* Botón "continuar sin registro" */
+.btn-guest {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 11px;
+    font-size: 14px;
+    color: #8a8fa8;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+.btn-guest:hover {
+    border-color: rgba(255,255,255,0.22);
+    color: #c8cce0;
+    background: rgba(255,255,255,0.03);
+}
+
+/* ── BARRA DE USUARIO LOGUEADO (aparece en el navbar) ── */
+#premium-user-bar {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: rgba(108,140,255,0.12);
+    border: 1px solid rgba(108,140,255,0.25);
+    border-radius: 20px;
+    padding: 5px 14px 5px 8px;
+    font-size: 13px;
+    color: #c8cce0;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: fixed;
+    top: 14px;
+    right: 80px;
+    z-index: 9000;
+}
+#premium-user-bar:hover { background: rgba(108,140,255,0.2); }
+#premium-user-bar .user-avatar {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c8cff, #534AB7);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff;
+}
+#premium-user-bar .user-name {
+    font-weight: 600;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#premium-user-bar .premium-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6c8cff;
+    background: rgba(108,140,255,0.15);
+    padding: 2px 7px;
+    border-radius: 10px;
+}
+
+/* ── SECCIÓN PREMIUM (CV + FORMULARIO CONTACTO PRIORITARIO) ── */
+#seccion-premium {
+    display: none;
+}
+#seccion-premium.visible {
+    display: block;
+}
+
+.premium-zona {
+    background: linear-gradient(135deg, rgba(108,140,255,0.07), rgba(83,74,183,0.05));
+    border: 1px solid rgba(108,140,255,0.18);
+    border-radius: 18px;
+    padding: 28px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.premium-zona-titulo {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.premium-zona-titulo i { color: #6c8cff; }
+
+/* Botón descargar CV */
+.btn-cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #6c8cff, #534AB7);
+    border: none;
+    border-radius: 12px;
+    padding: 13px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+    align-self: flex-start;
+}
+.btn-cv:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* Formulario contacto prioritario */
+.contacto-premium-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.contacto-premium-form textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #fff;
+    font-family: inherit;
+    outline: none;
+    resize: vertical;
+    min-height: 90px;
+    transition: border-color 0.2s;
+}
+.contacto-premium-form textarea:focus {
+    border-color: rgba(108,140,255,0.5);
+}
+.contacto-premium-form textarea::placeholder { color: #5a5f78; }
+.btn-enviar-contacto {
+    align-self: flex-start;
+    background: rgba(108,140,255,0.15);
+    border: 1px solid rgba(108,140,255,0.3);
+    border-radius: 12px;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6c8cff;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+.btn-enviar-contacto:hover {
+    background: rgba(108,140,255,0.28);
+    color: #fff;
+}
+.contacto-enviado {
+    display: none;
+    font-size: 13px;
+    color: #6cda8a;
+    align-items: center;
+    gap: 6px;
+}
+.contacto-enviado.visible { display: flex; }
+
+/* ── Toast de bienvenida ── */
+#premium-toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: linear-gradient(135deg, #1e2235, #252a3d);
+    border: 1px solid rgba(108,140,255,0.3);
+    border-radius: 14px;
+    padding: 14px 22px;
+    font-size: 14px;
+    color: #fff;
+    z-index: 30000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+#premium-toast.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+#premium-toast i { color: #6c8cff; font-size: 18px; }
+
+@media (max-width: 540px) {
+    .premium-header { padding: 22px 20px 18px; }
+    .premium-form   { padding: 16px 20px 22px; }
+    .premium-beneficios { padding: 16px 20px 0; }
+    #premium-user-bar { right: 56px; top: 12px; }
+}
